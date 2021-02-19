@@ -1,0 +1,7 @@
+apiVersion: awgreene.examples.com/v1
+kind: Foo
+metadata:
+  name: bar
+  namespace: default
+status:
+  modified: "yes"
