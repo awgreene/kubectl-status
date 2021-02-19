@@ -11,6 +11,7 @@ import (
 
 	"github.com/awgreene/kubectl-status/internal/pkg/action"
 	"github.com/awgreene/kubectl-status/internal/pkg/log"
+	"github.com/awgreene/kubectl-status/internal/version"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 )
 
@@ -23,9 +24,10 @@ func Execute() {
 func newCmd() *cobra.Command {
 	var cfg action.Configuration
 	return &cobra.Command{
-		Use:   "status <file>",
-		Short: "Modify the status of Kubernetes resources from the command line",
-		Long:  `Modify the status of Kubernetes resources from the command line`,
+		Use:     "status <file>",
+		Short:   "Modify the status of Kubernetes resources from the command line",
+		Long:    `Modify the status of Kubernetes resources from the command line`,
+		Version: version.Version,
 		PersistentPreRunE: func(*cobra.Command, []string) error {
 			return cfg.Load()
 		},

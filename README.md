@@ -9,9 +9,6 @@ $ make install
 go build -o bin/kubectl-status
 install bin/kubectl-status /home/agreene/go/bin
 
-$ chmod +x ./bin/kubectl-status
-$ sudo mv ./bin/kubectl-status /usr/local/bin
-
 # Check that the binary was installed correctly
 $ kubectl status
 Error: must specify file to  parse
