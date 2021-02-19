@@ -11,3 +11,6 @@ build:
 
 install: build
 	mv ./bin/kubectl-status $(shell go env GOPATH)/bin
+
+unit:
+	$(GO) test -coverprofile=coverage.out ./...
