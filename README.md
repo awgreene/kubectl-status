@@ -9,9 +9,6 @@ $ make install
 go build -o bin/kubectl-status
 install bin/kubectl-status /home/agreene/go/bin
 
-$ chmod +x ./bin/kubectl-status
-$ sudo mv ./bin/kubectl-status /usr/local/bin
-
 # Check that the binary was installed correctly
 $ kubectl status
 Error: must specify file to  parse
@@ -28,7 +25,8 @@ must specify file to parse
 
 ```bash
 # Create a CRD that includes a status subresource
-$ kubectl apply -f examples/foo.crd.yamlcustomresourcedefinition.apiextensions.k8s.io/foos.awgreene.examples.com created
+$ kubectl apply -f examples/foo.crd.yaml
+customresourcedefinition.apiextensions.k8s.io/foos.awgreene.examples.com created
 
 # Create a foo cr
 $ kubectl apply -f examples/foo.cr.yaml 
@@ -47,7 +45,7 @@ metadata:
   uid: 6ceac6a1-a41a-40c5-9936-27a5ffde8d22
 
 # Update the foo cr's status
-$ kubectl status example/foo-modified-status.cr.yaml
+$ kubectl status examples/foo-modified-status.cr.yaml
 
 # Check that the status was updated
 $ kubectl get foo bar -n default -o yaml

@@ -1,8 +1,13 @@
 .PHONY: all build
 all: build
 
+GO := go
+MODULE := $(shell $(GO) list -m)
+VERSION := $(shell git describe --always --tags HEAD)$(and $(shell git status --porcelain),+$(shell scripts/worktree-hash.sh))
+
+
 build:
-	go build -o bin/kubectl-status
+	$(GO) build -ldflags '-X $(MODULE)/internal/version.Version=$(VERSION)' -o ./bin/kubectl-status .
 
 install: build
-	install bin/kubectl-status $(shell go env GOPATH)/bin
+	mv ./bin/kubectl-status $(shell go env GOPATH)/bin
